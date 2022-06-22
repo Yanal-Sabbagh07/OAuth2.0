@@ -68,7 +68,7 @@ passport.use(
     {
       clientID: `${process.env.GOOGLE_CLIENT_ID}`,
       clientSecret: `${process.env.GOOGLE_CLIENT_SECRET}`,
-      callbackURL: "https://oauth2-0.herokuapp.com/oauth/google/callback",
+      callbackURL: "/oauth/google/callback",
       scope: ["profile"],
       state: true,
     },
@@ -139,7 +139,7 @@ app.get(
   passport.authenticate("google", { scope: ["profile"] })
 );
 app.get(
-  "https://oauth2-0.herokuapp.com/oauth/google/callback",
+  "/oauth/google/callback",
   passport.authenticate("google", {
     failureRedirect: "http://localhost:3000",
     session: true,

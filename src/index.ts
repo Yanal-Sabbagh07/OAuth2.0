@@ -139,7 +139,7 @@ app.get(
   passport.authenticate("google", { scope: ["profile"] })
 );
 app.get(
-  "/oauth/google/callback",
+  "https://oauth2-0.herokuapp.com/oauth/google/callback",
   passport.authenticate("google", {
     failureRedirect: "https://gallant-hodgkin-fb9c52.netlify.app",
     session: true,

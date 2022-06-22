@@ -49,7 +49,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get("/", (req, res) => {
-  res.send("server is up and running... ");
+  res.send("server is up and running ");
 });
 
 passport.serializeUser((user: IMongoDBUser, done: any) => {
@@ -104,7 +104,7 @@ passport.use(
     {
       clientID: `${process.env.GITHUB_CLIENT_ID}`,
       clientSecret: `${process.env.GITHUB_CLIENT_SECRET}`,
-      callbackURL: "/auth/github/callback",
+      callbackURL: "https://oauth2-0.herokuapp.com/auth/github/callback",
     },
     function (_: any, __: any, profile: any, cb: any) {
       User.findOne(
@@ -138,8 +138,9 @@ passport.use(
 app.get("/auth/google", passport.authenticate("google"));
 
 app.get(
-  "/auth/github/callback",
+  "https://oauth2-0.herokuapp.com/auth/github/callback",
   passport.authenticate("google", {
+    successRedirect: "http://localhost:3000",
     failureRedirect: "https://www.google.com",
     session: true,
   }),

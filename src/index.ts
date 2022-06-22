@@ -104,7 +104,7 @@ passport.use(
     {
       clientID: `${process.env.GITHUB_CLIENT_ID}`,
       clientSecret: `${process.env.GITHUB_CLIENT_SECRET}`,
-      callbackURL: "/oauth/github/callback",
+      callbackURL: "https://oauth2-0.herokuapp.com/oauth/github/callback",
     },
     function (_: any, __: any, profile: any, cb: any) {
       User.findOne(
@@ -139,9 +139,9 @@ app.get(
   passport.authenticate("google", { scope: ["profile"] })
 );
 app.get(
-  "/oauth/google/callback",
+  "https://oauth2-0.herokuapp.com/oauth/google/callback",
   passport.authenticate("google", {
-    failureRedirect: "http://localhost:3000",
+    failureRedirect: "http://localhost:3000/404",
     session: true,
   }),
   function (req, res) {

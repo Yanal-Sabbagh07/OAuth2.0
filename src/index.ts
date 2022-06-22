@@ -68,13 +68,17 @@ passport.use(
     {
       clientID: `${process.env.GOOGLE_CLIENT_ID}`,
       clientSecret: `${process.env.GOOGLE_CLIENT_SECRET}`,
-      callbackURL: "https://oauth2-0.herokuapp.com/auth/google/callback",
+      callbackURL: "/auth/google/callback",
       scope: ["profile"],
       state: true,
       cookie: {
         sameSite: "none",
         secure: true,
-        maxAge: 1000 * 60 * 60 * 1 * 1, // one minute
+        cookie: {
+          sameSite: "none",
+          secure: true,
+          maxAge: 1000 * 60 * 60 * 24 * 7, // One Week
+        },
       },
     },
     function (_: any, __: any, profile: any, cb: any) {
@@ -109,7 +113,7 @@ passport.use(
     {
       clientID: `${process.env.GITHUB_CLIENT_ID}`,
       clientSecret: `${process.env.GITHUB_CLIENT_SECRET}`,
-      callbackURL: "https://oauth2-0.herokuapp.com/auth/github/callback",
+      callbackURL: "/auth/github/callback",
     },
     function (_: any, __: any, profile: any, cb: any) {
       User.findOne(

@@ -49,7 +49,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get("/", (req, res) => {
-  res.send("server is up and running ..");
+  res.send("server is up and running ...");
 });
 
 passport.serializeUser((user: IMongoDBUser, done: any) => {

@@ -49,7 +49,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get("/", (req, res) => {
-  res.send("server is up and running ...");
+  res.send("server is up and running ..");
 });
 
 passport.serializeUser((user: IMongoDBUser, done: any) => {
@@ -140,13 +140,13 @@ app.get(
   passport.authenticate("google", { scope: ["profile"] })
 );
 app.get(
-  "/auth/google/callback",
+  "https://oauth2-0.herokuapp.com/auth/github/callback",
   passport.authenticate("google", {
-    failureRedirect: "http://localhost:3000",
+    failureRedirect: "/",
     session: true,
   }),
   function (req, res) {
-    res.redirect("http://localhost:3000");
+    res.redirect("/");
   }
 );
 
@@ -156,12 +156,12 @@ app.get("/auth/github", passport.authenticate("github"));
 app.get(
   "/auth/github/callback",
   passport.authenticate("github", {
-    failureRedirect: "http://localhost:3000",
+    failureRedirect: "/",
     session: true,
   }),
   function (req, res) {
     // Successful authentication, redirect home.
-    res.redirect("http://localhost:3000");
+    res.redirect("/");
   }
 );
 

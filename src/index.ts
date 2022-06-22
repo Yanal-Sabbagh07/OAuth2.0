@@ -141,7 +141,7 @@ app.get(
 app.get(
   "https://oauth2-0.herokuapp.com/oauth/google/callback",
   passport.authenticate("google", {
-    failureRedirect: "https://gallant-hodgkin-fb9c52.netlify.app",
+    failureRedirect: "http://localhost:3000",
     session: true,
   }),
   function (req, res) {
@@ -154,7 +154,10 @@ app.get("/auth/github", passport.authenticate("github"));
 
 app.get(
   "/oauth/github/callback",
-  passport.authenticate("github", { failureRedirect: "/login" }),
+  passport.authenticate("github", {
+    failureRedirect: "http://localhost:3000",
+    session: true,
+  }),
   function (req, res) {
     // Successful authentication, redirect home.
     res.redirect("http://localhost:3000");

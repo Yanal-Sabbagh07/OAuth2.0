@@ -71,6 +71,11 @@ passport.use(
       callbackURL: "https://oauth2-0.herokuapp.com/auth/google/callback",
       scope: ["profile"],
       state: true,
+      cookie: {
+        sameSite: "none",
+        secure: true,
+        maxAge: 1000 * 60 * 0.5 * 1 * 1, // half a minute
+      },
     },
     function (_: any, __: any, profile: any, cb: any) {
       User.findOne(

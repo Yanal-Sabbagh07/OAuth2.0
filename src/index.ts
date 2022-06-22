@@ -140,7 +140,7 @@ app.get(
   passport.authenticate("google", { scope: ["profile"] })
 );
 app.get(
-  "/auth/google/callback",
+  "https://oauth2-0.herokuapp.com/auth/google/callback",
   passport.authenticate("google", {
     failureRedirect: "http://localhost:3000",
     session: true,

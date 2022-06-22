@@ -49,7 +49,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get("/", (req, res) => {
-  res.send("server is up and running ");
+  res.send("server is up and running.......... ");
 });
 
 passport.serializeUser((user: IMongoDBUser, done: any) => {
@@ -69,7 +69,7 @@ passport.use(
     {
       clientID: `${process.env.GOOGLE_CLIENT_ID}`,
       clientSecret: `${process.env.GOOGLE_CLIENT_SECRET}`,
-      callbackURL: "/auth/google/callback",
+      callbackURL: "https://oauth2-0.herokuapp.com/auth/google/callback",
       scope: ["profile"],
     },
     function (_: any, __: any, profile: any, cb: any) {

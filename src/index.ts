@@ -139,7 +139,7 @@ app.get(
   passport.authenticate("google", { scope: ["profile"] })
 );
 app.get(
-  "https://oauth2-0.herokuapp.com/oauth/google/callback",
+  "/oauth/google/callback",
   passport.authenticate("google", {
     failureRedirect: "https://gallant-hodgkin-fb9c52.netlify.app",
     session: true,
@@ -153,7 +153,7 @@ app.get(
 app.get("/auth/github", passport.authenticate("github"));
 
 app.get(
-  "https://oauth2-0.herokuapp.com/oauth/github/callback",
+  "/oauth/github/callback",
   passport.authenticate("github", { failureRedirect: "/login" }),
   function (req, res) {
     // Successful authentication, redirect home.

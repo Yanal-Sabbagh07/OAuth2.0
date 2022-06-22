@@ -38,6 +38,11 @@ app.use(
     secret: "secretcode",
     resave: true,
     saveUninitialized: true,
+    cookie: {
+      sameSite: "none",
+      secure: true,
+      maxAge: 1000 * 60 * 60 * 1, // One hour
+    },
   })
 );
 app.use(passport.initialize());
@@ -99,7 +104,7 @@ passport.use(
     {
       clientID: `${process.env.GITHUB_CLIENT_ID}`,
       clientSecret: `${process.env.GITHUB_CLIENT_SECRET}`,
-      callbackURL: "http://localhost:5000/oauth/github/callback",
+      callbackURL: "/oauth/github/callback",
     },
     function (_: any, __: any, profile: any, cb: any) {
       User.findOne(

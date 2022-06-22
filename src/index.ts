@@ -70,7 +70,6 @@ passport.use(
       clientSecret: `${process.env.GOOGLE_CLIENT_SECRET}`,
       callbackURL: "/auth/google/callback",
       scope: ["profile"],
-      state: true,
     },
     function (_: any, __: any, profile: any, cb: any) {
       User.findOne(

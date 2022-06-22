@@ -138,7 +138,7 @@ passport.use(
 app.get("/auth/google", passport.authenticate("google"));
 
 app.get(
-  "auth/google/callback",
+  "/auth/google/callback",
   passport.authenticate("google", {
     successRedirect: "http://localhost:3000",
     failureRedirect: "https://www.google.com",

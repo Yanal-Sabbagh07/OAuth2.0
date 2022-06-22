@@ -39,9 +39,9 @@ app.use(
     resave: true,
     saveUninitialized: true,
     cookie: {
-      sameSite: false,
+      sameSite: "none",
       secure: true,
-      maxAge: 1000 * 60 * 60 * 1, // One minute
+      maxAge: 1000 * 60 * 1 * 1, // One minute
     },
   })
 );
@@ -49,7 +49,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get("/", (req, res) => {
-  res.send("server is up and running ..");
+  res.send("server is up and running ...");
 });
 
 passport.serializeUser((user: IMongoDBUser, done: any) => {
@@ -68,18 +68,9 @@ passport.use(
     {
       clientID: `${process.env.GOOGLE_CLIENT_ID}`,
       clientSecret: `${process.env.GOOGLE_CLIENT_SECRET}`,
-      callbackURL: "/auth/google/callback",
+      callbackURL: "https://oauth2-0.herokuapp.com/auth/google/callback",
       scope: ["profile"],
       state: true,
-      cookie: {
-        sameSite: "none",
-        secure: true,
-        cookie: {
-          sameSite: "none",
-          secure: true,
-          maxAge: 1000 * 60 * 60 * 24 * 7, // One Week
-        },
-      },
     },
     function (_: any, __: any, profile: any, cb: any) {
       User.findOne(
@@ -107,13 +98,13 @@ passport.use(
     }
   )
 );
-// github auth strategy
+// githu auth strategy
 passport.use(
   new GitHubStrategy(
     {
       clientID: `${process.env.GITHUB_CLIENT_ID}`,
       clientSecret: `${process.env.GITHUB_CLIENT_SECRET}`,
-      callbackURL: "/auth/github/callback",
+      callbackURL: "https://oauth2-0.herokuapp.com/auth/github/callback",
     },
     function (_: any, __: any, profile: any, cb: any) {
       User.findOne(

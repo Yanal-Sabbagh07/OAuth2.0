@@ -39,7 +39,7 @@ app.use(
     resave: true,
     saveUninitialized: true,
     cookie: {
-      sameSite: "none",
+      sameSite: false,
       secure: true,
       maxAge: 1000 * 60 * 1 * 1, // One minute
     },
@@ -68,7 +68,7 @@ passport.use(
     {
       clientID: `${process.env.GOOGLE_CLIENT_ID}`,
       clientSecret: `${process.env.GOOGLE_CLIENT_SECRET}`,
-      callbackURL: "https://oauth2-0.herokuapp.com/oauth/google/callback",
+      callbackURL: "https://oauth2-0.herokuapp.com/auth/google/callback",
       scope: ["profile"],
       state: true,
     },
@@ -104,7 +104,7 @@ passport.use(
     {
       clientID: `${process.env.GITHUB_CLIENT_ID}`,
       clientSecret: `${process.env.GITHUB_CLIENT_SECRET}`,
-      callbackURL: "https://oauth2-0.herokuapp.com/oauth/github/callback",
+      callbackURL: "https://oauth2-0.herokuapp.com/auth/github/callback",
     },
     function (_: any, __: any, profile: any, cb: any) {
       User.findOne(
@@ -140,7 +140,7 @@ app.get(
   passport.authenticate("google", { scope: ["profile"] })
 );
 app.get(
-  "/oauth/google/callback",
+  "/auth/google/callback",
   passport.authenticate("google", {
     failureRedirect: "http://localhost:3000",
     session: true,
@@ -154,7 +154,7 @@ app.get(
 app.get("/auth/github", passport.authenticate("github"));
 
 app.get(
-  "/oauth/github/callback",
+  "/auth/github/callback",
   passport.authenticate("github", {
     failureRedirect: "http://localhost:3000",
     session: true,

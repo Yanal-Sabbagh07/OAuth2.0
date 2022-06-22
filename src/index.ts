@@ -26,7 +26,7 @@ mongoose
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:3001",
+    origin: "http://localhost:3000",
     credentials: true,
   })
 );
@@ -139,13 +139,13 @@ app.get(
   passport.authenticate("google", { scope: ["profile"] })
 );
 app.get(
-  "/oauth/google/callback",
+  "https://oauth2-0.herokuapp.com/oauth/google/callback",
   passport.authenticate("google", {
     failureRedirect: "https://gallant-hodgkin-fb9c52.netlify.app",
     session: true,
   }),
   function (req, res) {
-    res.redirect("http://localhost:3001");
+    res.redirect("http://localhost:3000");
   }
 );
 
@@ -153,7 +153,7 @@ app.get(
 app.get("/auth/github", passport.authenticate("github"));
 
 app.get(
-  "/oauth/github/callback",
+  "https://oauth2-0.herokuapp.com/oauth/github/callback",
   passport.authenticate("github", { failureRedirect: "/login" }),
   function (req, res) {
     // Successful authentication, redirect home.

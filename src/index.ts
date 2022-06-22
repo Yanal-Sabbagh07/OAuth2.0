@@ -134,14 +134,15 @@ passport.use(
 );
 
 // google authentication reqquest
+
 app.get(
   "/auth/google",
   passport.authenticate("google", { scope: ["profile"] })
 );
 app.get(
-  "https://oauth2-0.herokuapp.com/oauth/google/callback",
+  "/auth/google/callback",
   passport.authenticate("google", {
-    failureRedirect: "http://localhost:3000/404",
+    failureRedirect: "http://localhost:3000",
     session: true,
   }),
   function (req, res) {

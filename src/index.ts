@@ -170,6 +170,6 @@ app.get("/logout", (req, res) => {
   res.send("done");
 });
 
-app.listen(5000, () => {
-  console.log("Server is up and running");
+app.listen(process.env.PORT || 4000, () => {
+  console.log("Server Starrted");
 });

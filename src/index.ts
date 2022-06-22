@@ -135,18 +135,17 @@ passport.use(
 
 // google authentication reqquest
 
+app.get("/auth/google", passport.authenticate("google"));
+
 app.get(
-  "/auth/google",
-  passport.authenticate("google", { scope: ["profile"] })
-);
-app.get(
-  "https://oauth2-0.herokuapp.com/auth/github/callback",
+  "/auth/google/callback",
   passport.authenticate("google", {
     failureRedirect: "/",
     session: true,
   }),
   function (req, res) {
-    res.redirect("/");
+    // Successful authentication, redirect home.
+    res.redirect("http://localhost:3000");
   }
 );
 
@@ -161,7 +160,7 @@ app.get(
   }),
   function (req, res) {
     // Successful authentication, redirect home.
-    res.redirect("/");
+    res.redirect("http://localhost:3000");
   }
 );
 

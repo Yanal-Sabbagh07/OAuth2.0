@@ -74,7 +74,7 @@ passport.use(
       cookie: {
         sameSite: "none",
         secure: true,
-        maxAge: 1000 * 60 * 0.5 * 1 * 1, // half a minute
+        maxAge: 1000 * 60 * 60 * 1 * 1, // one minute
       },
     },
     function (_: any, __: any, profile: any, cb: any) {
@@ -103,7 +103,7 @@ passport.use(
     }
   )
 );
-// githu auth strategy
+// github auth strategy
 passport.use(
   new GitHubStrategy(
     {

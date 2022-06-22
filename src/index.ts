@@ -68,7 +68,7 @@ passport.use(
     {
       clientID: `${process.env.GOOGLE_CLIENT_ID}`,
       clientSecret: `${process.env.GOOGLE_CLIENT_SECRET}`,
-      callbackURL: "/oauth/google/callback",
+      callbackURL: "https://oauth2-0.herokuapp.com/oauth/google/callback",
       scope: ["profile"],
       state: true,
     },

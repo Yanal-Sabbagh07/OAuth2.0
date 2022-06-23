@@ -171,7 +171,7 @@ app.get("/getuser", (req, res) => {
 app.get("/logout", (req, res) => {
   if (req.user) {
     req.logOut(() => {
-      res.redirect("https://oauth2-0.netlify.app");
+      console.log("Done logging out.");
     });
   }
 

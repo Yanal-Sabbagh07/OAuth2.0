@@ -26,7 +26,7 @@ mongoose
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://oauth2-0.netlify.app/",
     credentials: true,
   })
 );
@@ -41,7 +41,7 @@ app.use(
     cookie: {
       sameSite: "none",
       secure: true,
-      maxAge: 1000 * 60 * 1 * 1, // One minute
+      maxAge: 1000 * 60 * 10 * 1, // ten minutes
     },
   })
 );
@@ -58,7 +58,6 @@ passport.serializeUser((user: IMongoDBUser, done: any) => {
 
 passport.deserializeUser((id: string, done: any) => {
   User.findById(id, (err: Error, doc: IMongoDBUser) => {
-    // Whatever we return goes to the client and binds to the req.user property
     return done(null, doc);
   });
 });
@@ -140,13 +139,13 @@ app.get("/auth/google", passport.authenticate("google"));
 app.get(
   "/auth/google/callback",
   passport.authenticate("google", {
-    successRedirect: "http://localhost:3000",
-    failureRedirect: "https://www.google.com",
+    successRedirect: "https://oauth2-0.netlify.app",
+    failureRedirect: "https://oauth2-0.netlify.app/fail",
     session: true,
   }),
   function (req, res) {
     // Successful authentication, redirect home.
-    res.redirect("http://localhost:3000");
+    res.redirect("https://oauth2-0.netlify.app");
   }
 );
 
@@ -161,7 +160,7 @@ app.get(
   }),
   function (req, res) {
     // Successful authentication, redirect home.
-    res.redirect("http://localhost:3000");
+    res.redirect("https://oauth2-0.netlify.app");
   }
 );
 
@@ -179,6 +178,6 @@ app.get("/logout", (req, res) => {
   res.send("done");
 });
 
-app.listen(process.env.PORT || 4000, () => {
+app.listen(process.env.PORT || 5000, () => {
   console.log("Server Starrted");
 });

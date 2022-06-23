@@ -176,6 +176,7 @@ app.get("/logout", (req, res) => {
   }
 
   res.send("done");
+  res.redirect("https://oauth2-0.netlify.app");
 });
 
 app.listen(process.env.PORT || 5000, () => {

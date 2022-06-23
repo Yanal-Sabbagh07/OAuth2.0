@@ -174,9 +174,8 @@ app.get("/logout", (req, res) => {
       console.log("Done logging out.");
     });
   }
-
-  res.send("done");
   res.redirect("https://oauth2-0.netlify.app");
+  res.send("done");
 });
 
 app.listen(process.env.PORT || 5000, () => {

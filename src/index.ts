@@ -26,7 +26,7 @@ mongoose
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://oauth2-0.netlify.app/",
+    origin: "https://oauth2-0.netlify.app",
     credentials: true,
   })
 );

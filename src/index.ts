@@ -155,7 +155,7 @@ app.get("/auth/github", passport.authenticate("github"));
 app.get(
   "/auth/github/callback",
   passport.authenticate("github", {
-    failureRedirect: "/",
+    failureRedirect: "https://oauth2-0.netlify.app/fail",
     session: true,
   }),
   function (req, res) {
@@ -178,6 +178,6 @@ app.get("/logout", (req, res) => {
   res.send("done");
 });
 
-app.listen(process.env.PORT || 5000, () => {
+app.listen(process.env.PORT, () => {
   console.log("Server Starrted");
 });
